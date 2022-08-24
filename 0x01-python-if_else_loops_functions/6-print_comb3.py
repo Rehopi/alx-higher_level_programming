@@ -1,9 +1,7 @@
 #!/usr/bin/python3
-for i in range(0, 10):
+for i in range(10):
     for j in range(i + 1, 10):
-        if (i != 9):
-            print("{}".format(i), end="")
-            if (i == 8 and j == 9):
-                print("{}".format(j))
-            else:
-                 print("{}".format(j), end=", ")
+        if i == 8:
+            print("{i}{j}".format(i=i, j=j))
+        else:
+            print("{i}{j}".format(i=i, j=j), end=', ')
