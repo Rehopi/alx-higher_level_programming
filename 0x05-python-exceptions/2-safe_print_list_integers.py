@@ -1,7 +1,14 @@
 #!/usr/bin/python3
-def safe_print_integer(value):
+def safe_print_list_integers(my_list=[], x=0):
+    num_elem = 0
     try:
-        print("{:d}".format(value))
-        return(True)
-    except(ValueError, TypeError):
-        return(False)
+        for i in range(x):
+            try:
+                print("{:d}".format(my_list[i]), end="")
+                num_elem += 1
+            except (ValueError, TypeError):
+                print(end="")
+    except IndexError:
+        raise IndexError("list index out of range")
+    print()
+    return num_elem
