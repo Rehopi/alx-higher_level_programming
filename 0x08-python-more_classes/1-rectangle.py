@@ -1,9 +1,12 @@
 #!/usr/bin/python3
-"""This module creates a class named Rectangle"""
+
+"""
+This module contains a Rectangle class
+"""
 
 
 class Rectangle:
-     """A class named Rectangle"""
+     """A Rectangle class with few definitions"""
      pass
 
      def __init__(self, width=0, height=0):
@@ -17,10 +20,9 @@ class Rectangle:
              """Returns the width of rectangle"""
              return self.__width
 
-         @width.setter
+         @height.setter
          def width(self, value):
              """Sets the width of rectangle"""
-
 
              if not isinstance(value, int):
                  raise TypeError("width must be an integer")
@@ -39,11 +41,10 @@ class Rectangle:
          def height(self, value):
              """Sets the height of rectangle"""
 
-
              if not isinstance(value, int):
                  raise TypeError("height must be an integer")
 
              if value < 0:
                  raise ValueError("height must be >= 0")
 
-             self.__height = value
+             self.__width = value
