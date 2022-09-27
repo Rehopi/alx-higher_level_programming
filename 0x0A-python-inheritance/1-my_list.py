@@ -1,12 +1,17 @@
 #!/usr/bin/python3
-"A module that defines a class named MyList"
+"""
+This is the "MyList"  module.
+
+This module provides a simple MyList class.
+"""
 
 
 class MyList(list):
-    """A class named MyList
-    Attributes:
-    attr1(print_sorted): prints sorted list
+    """ Empty class MyList that defines a list
+
+        Args:
+            list: inherits from list
+
     """
     def print_sorted(self):
-        """Prints instance"""
         print(sorted(self))
