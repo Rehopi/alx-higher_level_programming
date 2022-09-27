@@ -1,17 +1,22 @@
 #!/usr/bin/python3
 """
-This module creates a class named MyInt
+    This is the "MyInt"  module.
+
+    This module provides a simple MyInt class.
 """
 
+
 class MyInt(int):
-    """
-    A class named MyInt
-    """
+    """ Empty class MyInt that defines a base geometry
 
-    def __eq__(self, other):
-        """Swaps the eq builtin"""
-        return int.__ne__(self, other)
+        Args:
+            int: inherits int attributes
+    """
+    def __init__(self, value):
+        self.__value = value
 
-    def __ne__(self, other):
-        """Swaps the ne builtin"""
-        return int.__eq__(self, other)
+    def __eq__(self, value):
+        return False
+
+    def __ne__(self, value):
+        return True
