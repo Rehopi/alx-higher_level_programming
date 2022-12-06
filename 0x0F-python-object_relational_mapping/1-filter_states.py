@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""This module contains a script that displays the states table"""
+"""This module contains a script that lists all states starting with N"""
 
 import sys
 import MySQLdb
@@ -10,7 +10,6 @@ if __name__ == "__main__":
     cur = conn.cursor()
     cur.execute(
         "SELECT * FROM states WHERE Name LIKE BINARY '{}' ORDER BY id ASC"
-        .format(sys.argv[4]))
     query_rows = cur.fetchall()
     for row in query_rows:
         print(row)
