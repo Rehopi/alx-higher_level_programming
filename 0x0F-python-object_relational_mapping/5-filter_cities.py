@@ -1,16 +1,14 @@
 #!/usr/bin/python3
-"""
-First state model
-"""
+"""This module contains a script that lists all cities of a passed state"""
 
-from sys import argv
+import sys
 import MySQLdb
 
 if __name__ == '__main__':
-    db = MySQLdb.connect(host="localhost", port=3306, user=argv[1],
+    conn = MySQLdb.connect(host="localhost", port=3306, user=argv[1],
                          passwd=argv[2], db=argv[3], charset="utf8")
     state = argv[4]
-    cur = db.cursor()
+    cur = conn.cursor()
     sql = """SELECT cities.name
           FROM cities JOIN states
           ON cities.state_id = states.id
@@ -21,4 +19,4 @@ if __name__ == '__main__':
 
           print(", ".join(row[0] for row in query_rows))
           cur.close()
-          db.close()
+          conn.close()
