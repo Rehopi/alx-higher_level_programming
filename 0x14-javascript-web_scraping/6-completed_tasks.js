@@ -1,18 +1,26 @@
 #!/usr/bin/node
-const axios = require('axios').default;
+const request = require('request');
 const url = process.argv[2];
+let resultList = [];
+let i = 0;
+const countDict = {};
+let key = '';
 
-axios.get(url)
-  .then(function (response) {
-    const count = {};
-    for (let i = 0; response.data[i]; i++) {
-      if (response.data[i].completed === true) {
-        if (isNaN(count[response.data[i].userId])) {
-          count[response.data[i].userId] = 1;
+request(url, function (error, response, body) {
+  if (error) {
+    console.log(error);
+  } else {
+    resultList = JSON.parse(body);
+    for (i = 0; i < resultList.length; i++) {
+      key = resultList[i].userId;
+      if (resultList[i].completed === true) {
+	if (!countDict[key]) {
+          countDict[key] = 1;
 	} else {
-	  count[response.data[i].userId] += 1;
+	  countDict[key] += 1;
 	}
       }
     }
-    console.log(count);
-  });
+    console.log(countDict);
+  }
+});
