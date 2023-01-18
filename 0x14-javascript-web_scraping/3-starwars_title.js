@@ -1,18 +1,19 @@
 #!/usr/bin/node
-const id = process.argv[2];
-const url = 'https://swapi-api.hbtn.io/api/films/' + id + '/';
-const axios = require('axios').default;
+/* a script that prints the title of a Star Wars movie where the episode number matches a given integer.
 
-// Make a request for a user with a given ID
-axios.get(url)
-  .then(function (response) {
-    // handle success
-    console.log(response.data.title);
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  })
-  .then(function () {
-    // always executed
-  });
+The first argument is the episode number
+You must use the Star wars API with the endpoint http://swapi.co/api/films/:id
+You must use the module request */
+
+const request = require('request');
+
+let url = 'http://swapi.co/api/films/' + process.argv[2];
+
+request.get(url, function (err, res, body) {
+  if (err) {
+    console.log(err); // Print the error if one occurred
+  } else {
+    let dic = JSON.parse(body);
+    console.log(dic['title']);
+  }
+});
