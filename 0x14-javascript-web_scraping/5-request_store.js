@@ -1,14 +1,16 @@
 #!/usr/bin/node
+const request = require('request');
+
+let url = process.argv[2];
+let file = process.argv[3];
 const fs = require('fs');
-const axios = require('axios').default;
-const url = process.argv[2];
-request(url, function (error, response, body) {
-  if (error) {
-    console.log(error);
+
+request.get(url, function (err, res, body) {
+  if (err) {
+    console.log(err); // Print the error if one occurred
   } else {
-    text = body;
-      fs.writeFileSync(process.argv[3], response.data, { encoding: 'utf-8', flag: 'w+' });
-    } catch (err) {
-      console.log(err);
-    }
-  });
+    fs.writeFileSync(process.argv[3], response.data, { encoding: 'utf-8', flag: 'w+' });
+  } catch (err) {
+    console.log(err);
+  }
+});
