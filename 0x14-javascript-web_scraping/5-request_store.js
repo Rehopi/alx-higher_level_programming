@@ -1,16 +1,18 @@
 #!/usr/bin/node
 const request = require('request');
-
-let url = process.argv[2];
-let file = process.argv[3];
 const fs = require('fs');
+const url = process.argv[2];
+let text;
 
-request.get(url, function (err, res, body) {
-  if (err) {
-    console.log(err); // Print the error if one occurred
+request(url, function (error, response, body) {
+  if (error) {
+    console.log(error);
   } else {
-    fs.writeFileSync(process.argv[3], response.data, { encoding: 'utf-8', flag: 'w+' });
-  } catch (err) {
-    console.log(err);
-  }
-});
+    text = body;
+    fs.writeFile(process.argv[3], text, 'utf-8', (err) => {
+      if (err) {
+	console.log(err);
+      }
+    });
+  })
+};
